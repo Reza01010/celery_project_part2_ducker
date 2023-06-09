@@ -7,20 +7,31 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - broker
+      - db
+
 
   broker:
-    image: rabbitmq:3.8-management-alpine
+    image: rabbitmq:3.8-management
     ports:
-      - "15672:15672"
-      - "5672:5672"
-
+      - 15672:15672
+      - 5672:5672
   worker:
     build: .
-    command: celery -A myproject worker -l info
+    command: ["celery", "worker", "-l", "INFO"]
     volumes:
       - .:/code
     depends_on:
       - broker
+      - db
+    restart: always
+
+  db:
+    image: postgres:13-alpine
+
+    environment:
+      - POSTGRES_DB=my_database
+      - POSTGRES_USER=my_username
+      - POSTGRES_PASSWORD=my_password

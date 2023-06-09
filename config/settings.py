@@ -75,11 +75,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'my_username',
+        'PASSWORD': 'my_password',
+        'HOST': 'db',
+        'PORT': 5432
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,3 +129,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'rpc://'
+# CELERY_BROKER_URL = "amqp://user:password@broker:5672"
+# CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
+
+
+# CELERY_BROKER_URL="amqp://guest:guest@rabbitmq3:5672/"
+
+# app.conf.broker_url = 'amqp://guest:guest@rabbitmq:5672//'
+# CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
+# CELERY_RESULT_BACKEND = 'rpc://
+
+
+
+CELERY_BROKER_TRANSPORT_OPTIONS = {'hosts': [('localhost', 5672)]}
