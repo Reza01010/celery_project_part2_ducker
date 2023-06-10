@@ -6,8 +6,8 @@ def view(request):
     from datetime import timedelta
 
 
-    result = add.apply_async(args=[3, 5], countdown=5)
-    print('\n"-_-"' * 20, result, '\n"-_-"' * 20)
+    add.apply_async(args=[3, 5], countdown=5)
+
 
     return render(request, template_name='w.html')
 

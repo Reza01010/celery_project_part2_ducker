@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -127,12 +127,23 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# RABBITMQ = {
+#     "PROTOCOL": "amqp", # in prod change with "amqps"
+#     "HOST": os.getenv("RABBITMQ_HOST", "localhost"),
+#     "PORT": os.getenv("RABBITMQ_PORT", 5672),
+#     "USER": os.getenv("RABBITMQ_USER", "guest"),
+#     "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
+# }
+# CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}"
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'rpc://'
 # CELERY_BROKER_URL = "amqp://user:password@broker:5672"
 # CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
 
-
+# BROKER_URL = 'amqp://localhost:5672'
+# or
+# BROKER_URL = 'amqp://username:password@hostname:5672'
 # CELERY_BROKER_URL="amqp://guest:guest@rabbitmq3:5672/"
 
 # app.conf.broker_url = 'amqp://guest:guest@rabbitmq:5672//'
@@ -141,4 +152,4 @@ CELERY_RESULT_BACKEND = 'rpc://'
 
 
 
-CELERY_BROKER_TRANSPORT_OPTIONS = {'hosts': [('localhost', 5672)]}
+# CELERY_BROKER_TRANSPORT_OPTIONS = {'hosts': [('localhost', 5672)]}
