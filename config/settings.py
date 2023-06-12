@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'app',
+    'celery',
+    'rabbitmq',
+
 ]
 
 MIDDLEWARE = [
@@ -136,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
 # }
 # CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}"
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+# CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'rpc://'
 # CELERY_BROKER_URL = "amqp://user:password@broker:5672"
 # CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
@@ -147,7 +152,7 @@ CELERY_RESULT_BACKEND = 'rpc://'
 # CELERY_BROKER_URL="amqp://guest:guest@rabbitmq3:5672/"
 
 # app.conf.broker_url = 'amqp://guest:guest@rabbitmq:5672//'
-# CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbit:5672//'
 # CELERY_RESULT_BACKEND = 'rpc://
 
 

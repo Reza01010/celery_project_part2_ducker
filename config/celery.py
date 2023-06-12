@@ -35,7 +35,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', DJANGO_SETTINGS_MODULE)
 
 
 
-app = Celery('app.tasks', backend='rpc://', broker='pyamqp://guest:guest@localhost:5672//')
+app = Celery('config', backend='rpc://', broker='amqp://guest:guest@rabbit:5672//')
 
 # Load task modules from all registered Django app configs
 app.autodiscover_tasks()
